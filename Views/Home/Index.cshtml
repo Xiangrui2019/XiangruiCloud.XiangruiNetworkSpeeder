@@ -1,0 +1,95 @@
+﻿<!DOCTYPE HTML>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>网络测速器 - 一个简单的网络测速器</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand hidden-md hidden-sm">网络测速器</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">主页</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="jumbotron">
+            <h1>网络测速器</h1>
+            <p>网络测速器是一个简单的网络测速工具.</p>
+            访问者IP: <code>@Context.Connection.RemoteIpAddress.ToString()</code>
+            <br />
+            服务器当前时间: <kbd id="spanStatus"></kbd>
+            <p><button class="btn btn-success btn-lg margin20" id="startAllButton" onclick="startAll()" role="button">开始所有测试</button></p>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>HTTP 延迟</h3>
+                <p>您的浏览器将向服务器发送一条简单的HTTP请求并得到一个简单的响应.这个数字表示从请求到响应所花费的时间.数字越小, 说明您的网络越好</p>
+                <pre id="httpStatus"></pre>
+                <code id="httpMax"></code>
+                <div class="form-group margin20">
+                    <label for="exampleInputEmail1">日志过滤器(ms)</label>
+                    <input type="number" class="form-control" id="pinglagfilter" value="200">
+                    <button class="btn btn-primary margin20" id="pingbutton" onclick="ping()">开始测试</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>下载速度</h3>
+                <p>您的浏览器将从我们的服务器下载6MB文件.从它启动并获取文件时, 我们将帮助您计算网络下载速度.数字越大, 您的网络就越好.</p>
+                <pre id="downStatus"></pre>
+                <code id="downMax"></code>
+                <div class="form-group margin20">
+                    <label for="exampleInputEmail1">日志过滤器(MB/s)</label>
+                    <input type="number" class="form-control" id="speedlagfilter" value="0.7">
+                    <button class="btn btn-primary margin20" id="downloadbutton" onclick="download()">开始测试</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>WebSocket 延迟</h3>
+                <p>这个数字表示当前服务器事件和上一个服务器事件之间的间隔时间. 数字应接近10毫秒.</p>
+                <pre id="wsStatus"></pre>
+                <code id="wsmax"></code>
+                <div class="form-group margin20">
+                    <label for="exampleInputEmail1">日志过滤器(ms)</label>
+                    <input type="number" class="form-control" id="wslagfilter" value="300">
+                    <button class="btn btn-primary margin20" id="wsbutton" onclick="WsTest()">开始测试</button>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <h2>错误请求日志</h2>
+
+        <table class="table table-striped table-hover" id="logTable">
+            <tr>
+                <th>时间</th>
+                <th>触发者</th>
+                <th>值</th>
+            </tr>
+        </table>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">&copy; @DateTime.Now.Year - 网络测速器
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/ws.js"></script>
+    <script src="~/js/http.js"></script>
+    <script src="~/js/down.js"></script>
+    <script src="~/js/site.js"></script>
+</body>

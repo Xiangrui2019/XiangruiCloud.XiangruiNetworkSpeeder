@@ -29,7 +29,7 @@ var startdownload = function () {
         }
         //update view
         $('#downStatus').html('当前速度: ' + speed.toFixed(2) + 'MB/s');
-        $('#downMax').html('最大速度: ' + minspeed.toFixed(2) + 'MB/s');
+        $('#downMax').html('最小速度: ' + minspeed.toFixed(2) + 'MB/s');
         setTimeout(startdownload, 0);
     });
 }

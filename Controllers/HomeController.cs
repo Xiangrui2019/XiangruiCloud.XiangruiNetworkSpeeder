@@ -12,7 +12,7 @@ namespace XiangruiCloud.XiangruiNetworkSpeeder.Controllers
     {
         private IPusher<WebSocket> _pusher;
         private static byte[] _data;
-        private static int length = 1024 * 1024 * 6;
+        private static int length = 1024 * 1024 * 2;
         private static byte[] GetData()
         {
             if (_data == null)
